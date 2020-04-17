@@ -1,4 +1,4 @@
-module Morphir.Dapr.Input.Example exposing (..)
+module Company.Operations.BooksAndRecords exposing (..)
 
 import Morphir.SDK.StatefulApp exposing (StatefulApp)
 
@@ -53,7 +53,7 @@ app =
 logic : ID -> Maybe Deal -> DealCmd -> ( ID, Maybe Deal, DealEvent )
 logic dealId deal dealCmd =
     case deal of
-        Just d ->
+        Just _ ->
             case dealCmd of
                 CloseDeal _ ->
                     ( dealId, Nothing, DealClosed dealId )

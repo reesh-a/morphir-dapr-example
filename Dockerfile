@@ -1,5 +1,6 @@
-FROM reesh/morphir-elm:0.4.0
-WORKDIR /usr/src/morphir-elm
-COPY Example.elm /usr/src/morphir-elm/examples/Morphir/Dapr/Input/
-RUN sh ./examples/morphir-dapr-build-example.sh
-# RUN cd /usr/src/morphir-elm/examples && ls -lrt && cat Main.elm
+FROM node:8-alpine
+WORKDIR /app
+COPY dapr-output/ .
+RUN npm install
+EXPOSE 3000
+CMD [ "node", "DaprAppShell.js" ]
