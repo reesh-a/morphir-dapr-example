@@ -19,6 +19,10 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+    - env:
+        ACR_SERVER: daprapps.azurecr.io
+        APP_NAME: books_and_records
+    
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
@@ -48,9 +52,6 @@ jobs:
         
     # Login to Azure Container Registry, build and push image
     - name: Login to azure container registry
-      env:
-        ACR_SERVER: daprapps.azurecr.io
-        APP_NAME: books_and_records
       uses: azure/docker-login@v1
       with: 
         login-server: $ACR_SERVER
