@@ -32,6 +32,27 @@ jobs:
         echo Add other actions to build,
         echo test, and deploy your project.
         
+    # Build morphir application
+    - name: Build morphir application
+      uses: actions/setup-node@v1
+    - run: |
+        npm install -g morphir-elm
+        morphir-dapr -d
+        
+    # Login to Azure Container Registry, build and push image
+    - name: Login to azure container registry
+      env:
+        ACR_SERVER: daprapps.azurecr.io
+        APP_NAME: books_and_records
+      uses: azure/docker-login@v1
+      with: 
+        login-server: $ACR_SERVER
+        username: ${{ secrets.SERVICE_PRINCIPAL_CLIENT_ID }}
+        password: ${{ secrets.SERVICE_PRINCIPAL_SECRET }}
+    - run: |
+        docker build . --tag $ACR_SERVER/$APP_NAME:${{ github.sha }}
+        docker push $ACR_SERVER/$APP_NAME:${{ github.sha }} 
+        
     # Login to azure azzount
     - name: Azure login
       uses: azure/login@v1
