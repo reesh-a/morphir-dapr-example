@@ -57,7 +57,7 @@ jobs:
         username: ${{ secrets.SERVICE_PRINCIPAL_CLIENT_ID }}
         password: ${{ secrets.SERVICE_PRINCIPAL_SECRET }}
     - run: |
-        docker build . --tag $ACR_SERVER/$APP_NAME:${{ github.sha }}
+        docker build --tag $ACR_SERVER/$APP_NAME:${{ github.sha }} .
         docker push $ACR_SERVER/$APP_NAME:${{ github.sha }} 
         
     # Login to azure azzount
