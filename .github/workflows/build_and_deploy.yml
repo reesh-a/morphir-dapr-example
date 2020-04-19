@@ -40,5 +40,5 @@ jobs:
         
     # Check azure login status #
     - run: |
-        az webapp list --query "[?status='Running']" 
+        az webapp list --query "[?state='Running']" 
  
