@@ -33,9 +33,13 @@ jobs:
         echo test, and deploy your project.
         
     # Build morphir application
-    - name: Build morphir application
-    - uses: actions/setup-node@v1.4.1
-    - uses: justgook/setup-elm@v1
+    - name: Set up node
+      uses: actions/setup-node@v1.4.1
+      
+    - name: Set up elm
+      uses: justgook/setup-elm@v1
+      
+    - name: Compile morphir application
     - run: |
         npm install -g morphir-elm
         morphir-dapr -d
