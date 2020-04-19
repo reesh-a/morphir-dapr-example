@@ -34,7 +34,9 @@ jobs:
         
     # Build morphir application
     - name: Build morphir application
-      uses: actions/setup-node@v1
+      uses: 
+        actions/setup-node@v1
+        justgook/setup-elm@v1
     - run: |
         npm install -g morphir-elm
         morphir-dapr -d
