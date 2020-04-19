@@ -38,7 +38,7 @@ jobs:
       with: 
         creds: ${{ secrets.AZURE_CREDENTIALS }}
         
-    # Check azure login status
+    # Check azure login status #
     - run: |
         az webapp list --query "[?status='Running']" 
  
