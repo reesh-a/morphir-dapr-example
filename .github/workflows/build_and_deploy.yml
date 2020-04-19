@@ -31,3 +31,14 @@ jobs:
       run: |
         echo Add other actions to build,
         echo test, and deploy your project.
+        
+    # Login to azure azzount
+    - name: Azure login
+      uses: azure/login@v1
+      with: 
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        
+    # Check azure login status
+    - run: |
+        az webapp list --query "[?status='Running']" 
+ 
