@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: curl-invoker-app
+  labels:
+    app: curl-invoker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: curl-invoker
+  template:
+    metadata:
+      labels:
+        app: curl-invoker
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/id: "curl-invoker"
+        dapr.io/port: "3000"
+    spec:
+      containers:
+        - name: curl-invoker
+          image: daprapps.azurecr.io/curl_image:7.69.1
+          imagePullPolicy: IfNotPresent

@@ -6,7 +6,7 @@ metadata:
     app: books-and-records
 spec:
   selector:
-    app: node
+    app: books-and-records
   ports:
     - protocol: TCP
       port: 80
