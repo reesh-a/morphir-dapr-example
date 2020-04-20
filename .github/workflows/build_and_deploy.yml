@@ -43,15 +43,14 @@ jobs:
     - name: Login to azure container registry
       uses: azure/docker-login@v1
       with: 
-        login-server: daprapps.azurecr.io
+        login-server: ${{ env.AZURE_CONTAINER_REGISTRY_SERVER }}
         username: ${{ secrets.SERVICE_PRINCIPAL_CLIENT_ID }}
         password: ${{ secrets.SERVICE_PRINCIPAL_SECRET }}
     
     - name: Push image to azure container registry
       run: |
-        echo ${{ env.AZURE_CONTAINER_REGISTRY_SERVER }}/${{ env.APP_NAME }}
-        docker build . -t daprapps.azurecr.io/books_and_records:${{ github.sha }}
-        docker push daprapps.azurecr.io/books_and_records:${{ github.sha }}
+        docker build . -t ${{ env.AZURE_CONTAINER_REGISTRY_SERVER }}/${{ env.APP_NAME }}:${{ github.sha }}
+        docker push ${{ env.AZURE_CONTAINER_REGISTRY_SERVER }}/${{ env.APP_NAME }}:${{ github.sha }}
         
     - name: Azure login
       uses: azure/login@v1
