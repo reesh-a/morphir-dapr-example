@@ -48,7 +48,7 @@ jobs:
     
     # Build docker image to push to ACR
     - name: Push image to azure container registry
-    - run: |
+      run: |
         docker build . -t daprapps.azurecr.io/books_and_records:${{ github.sha }}
         docker push daprapps.azurecr.io/books_and_records:${{ github.sha }}
         
