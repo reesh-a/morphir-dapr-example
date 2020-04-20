@@ -49,7 +49,7 @@ jobs:
         username: ${{ secrets.SERVICE_PRINCIPAL_CLIENT_ID }}
         password: ${{ secrets.SERVICE_PRINCIPAL_SECRET }}
     
-    # Build docker image and push to ACR
+    # Build docker image to push to ACR
     - name: Build docker image
       run: |
         docker build --tag $ACR_SERVER/$APP_NAME:${{ github.sha }} .
