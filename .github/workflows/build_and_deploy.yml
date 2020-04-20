@@ -46,8 +46,8 @@ jobs:
       uses: azure/docker-login@v1
       with: 
         login-server: $ACR_SERVER
-        username: ${{ secrets.SERVICE_PRINCIPAL_CLIENT_ID }}
-        password: ${{ secrets.SERVICE_PRINCIPAL_SECRET }}
+        username: ${{ secrets.REGISTRY_USERNAME }}
+        password: ${{ secrets.REGISTRY_PASSWORD }}
     
     # Build docker image to push to ACR
     - name: Build docker image
