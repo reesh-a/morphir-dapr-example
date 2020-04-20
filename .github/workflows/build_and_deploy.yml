@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     
     env:
-      AZURE_CONTAINER_REGISTRY_SERVER: $${{ 'daprapps.azurecr.io' }}
+      AZURE_CONTAINER_REGISTRY_SERVER: ${{ 'daprapps.azurecr.io' }}
       APP_NAME: ${{ 'books_and_records' }}
 
     steps:
