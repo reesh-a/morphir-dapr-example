@@ -56,9 +56,4 @@ jobs:
     - name: Azure login
       uses: azure/login@v1
       with: 
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-        
-    # Check azure login status #
-    - run: |
-        az webapp list --query "[?state='Running']" 
- 
+        creds: ${{ secrets.SERVICE_PRINCIPAL_AUTH }}      
