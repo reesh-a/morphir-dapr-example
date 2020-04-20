@@ -45,14 +45,14 @@ jobs:
     - name: Login to azure container registry
       uses: azure/docker-login@v1
       with: 
-        login-server: $ACR_SERVER
+        login-server: daprapps.azurecr.io
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
     
     # Build docker image to push to ACR
     - run: |
-        docker build . -t $ACR_SERVER/$APP_NAME:${{ github.sha }}
-        docker push $ACR_SERVER/$APP_NAME:${{ github.sha }}
+        docker build . -t daprapps.azurecr.io/books_and_records:${{ github.sha }}
+        docker push daprapps.azurecr.io/books_and_records:${{ github.sha }}
         
     # Login to azure azzount
     - name: Azure login
