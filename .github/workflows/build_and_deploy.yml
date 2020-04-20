@@ -19,8 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     
     env:
-      AZURE_CONTAINER_REGISTRY_SERVER: daprapps.azurecr.io
-      APP_NAME: books_and_records
+      AZURE_CONTAINER_REGISTRY_SERVER: $${{ 'daprapps.azurecr.io' }}
+      APP_NAME: ${{ 'books_and_records' }}
 
     steps:
     
@@ -49,7 +49,7 @@ jobs:
     
     - name: Push image to azure container registry
       run: |
-        echo $AZURE_CONTAINER_REGISTRY_SERVER/$APP_NAME
+        echo ${{ env.AZURE_CONTAINER_REGISTRY_SERVER }}/${{ env.APP_NAME }}
         docker build . -t daprapps.azurecr.io/books_and_records:${{ github.sha }}
         docker push daprapps.azurecr.io/books_and_records:${{ github.sha }}
         
