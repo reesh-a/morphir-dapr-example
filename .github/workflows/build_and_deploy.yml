@@ -52,8 +52,8 @@ jobs:
     # Build docker image to push to ACR
     - name: Build docker image
       run: |
-        docker build --tag $ACR_SERVER/$APP_NAME:${{ github.sha }} .
-        docker push $ACR_SERVER/$APP_NAME:${{ github.sha }} 
+        docker build --tag $ACR_SERVER/$APP_NAME:latest .
+        docker push $ACR_SERVER/$APP_NAME:latest
         
     # Login to azure azzount
     - name: Azure login
