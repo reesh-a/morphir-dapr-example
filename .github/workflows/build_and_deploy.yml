@@ -9,10 +9,7 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-  
-env:
-  ACR_SERVER: daprapps.azurecr.io
-  APP_NAME: books_and_records
+
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -46,10 +43,11 @@ jobs:
       uses: azure/docker-login@v1
       with: 
         login-server: daprapps.azurecr.io
-        username: ${{ secrets.REGISTRY_USERNAME }}
-        password: ${{ secrets.REGISTRY_PASSWORD }}
+        username: ${{ secrets.SERVICE_PRINCIPAL_CLIENT_ID }}
+        password: ${{ secrets.SERVICE_PRINCIPAL_SECRET }}
     
     # Build docker image to push to ACR
+    - name: Push image to azure container registry
     - run: |
         docker build . -t daprapps.azurecr.io/books_and_records:${{ github.sha }}
         docker push daprapps.azurecr.io/books_and_records:${{ github.sha }}
