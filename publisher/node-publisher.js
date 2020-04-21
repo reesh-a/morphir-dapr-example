@@ -1,5 +1,7 @@
 const readline = require('readline')
 const http = require('http')
+const express = require('express')
+const app = express()
 
 const rl = readline.createInterface({
 	input: process.stdin,
@@ -49,5 +51,8 @@ function ask() {
 	})
 }
 
-console.log("Json message publisher. Dapr URL: 'localhost/3500/v1.0/publish/<topic>' \n")
-ask()
+app.get('/', (_req, res) => { res.send("Hello from node dapr publisher") })
+app.listen(3000, () => {
+	console.log("Json message publisher. Dapr URL: 'localhost/3500/v1.0/publish/<topic>' \n")
+	ask()
+})

@@ -1,6 +1,6 @@
 FROM node:8-alpine
 WORKDIR /app
-COPY node-publisher.js .
+COPY . .
 RUN npm install
 EXPOSE 3000
 CMD [ "node", "node-publisher.js" ]
