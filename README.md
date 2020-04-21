@@ -1,3 +1,5 @@
+![build-publish](https://github.com/reesh-a/morphir-dapr-example/workflows/build-publish/badge.svg)
+
 # morphir-dapr-example
 
 
