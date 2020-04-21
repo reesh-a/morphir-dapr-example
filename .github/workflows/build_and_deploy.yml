@@ -21,7 +21,7 @@ jobs:
     env:
       AZURE_CONTAINER_REGISTRY_SERVER: ${{ 'daprapps.azurecr.io' }}
       APP_NAME: ${{ 'books_and_records' }}
-      PUBLISHER_NAME: ${{ node_publisher }}
+      PUBLISHER_NAME: ${{ 'node_publisher' }}
 
     steps:
     
