@@ -20,30 +20,29 @@ function ask() {
 				headers: {
 					'Content-Type': 'application/json'
 				}
-			};
+			} 
 
 			const req = http.request(options, (res) => {
-				console.log(`STATUS: ${res.statusCode}`);
-				console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
-				res.setEncoding('utf8');
+				console.log(`STATUS: ${res.statusCode}`) 
+				console.log(`HEADERS: ${JSON.stringify(res.headers)}`) 
+				res.setEncoding('utf8') 
 				res.on('data', (chunk) => {
-					console.log(`BODY: ${chunk}`);
-				});
+					console.log(`BODY: ${chunk}`) 
+				}) 
 				res.on('end', () => {
-					console.log('No more data in response.');
-				});
-			});
+					console.log('Message sent!')
+					ask()
+				}) 
+			}) 
 
 			req.on('error', (e) => {
-				console.error(`problem with request: ${e.message}`);
-			});
+				console.error(`problem with request: ${e.message}`)
+				console.log("Try again: \n")
+				ask()
+			}) 
 
 			req.write(msg)
 			req.end()
-
-			console.log(`Message sent!`)
-
-			ask()
 
 		})
 	})
