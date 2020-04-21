@@ -21,6 +21,7 @@ jobs:
     env:
       AZURE_CONTAINER_REGISTRY_SERVER: ${{ 'daprapps.azurecr.io' }}
       APP_NAME: ${{ 'books_and_records' }}
+      PUBLISHER_NAME: ${{ node_publisher }}
 
     steps:
     
@@ -47,10 +48,16 @@ jobs:
         username: ${{ secrets.SERVICE_PRINCIPAL_CLIENT_ID }}
         password: ${{ secrets.SERVICE_PRINCIPAL_SECRET }}
     
-    - name: Push image to azure container registry
+    - name: Push app image to azure container registry
       run: |
         docker build . -t ${{ env.AZURE_CONTAINER_REGISTRY_SERVER }}/${{ env.APP_NAME }}:${{ github.sha }}
         docker push ${{ env.AZURE_CONTAINER_REGISTRY_SERVER }}/${{ env.APP_NAME }}:${{ github.sha }}
+
+    - name: Push publisher image to azure container registry
+      run: |
+        cd publisher
+        docker build . -t ${{ env.AZURE_CONTAINER_REGISTRY_SERVER }}/${{ env.PUBLISHER_NAME }}:latest
+        docker push ${{ env.AZURE_CONTAINER_REGISTRY_SERVER }}/${{ env.PUBLISHER_NAME }}:latest
         
     - name: Azure login
       uses: azure/login@v1

@@ -1,24 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: curl-invoker-app
+  name: node-publisher
   labels:
-    app: curl-invoker
+    app: node-publisher
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: curl-invoker
+      app: node-publisher
   template:
     metadata:
       labels:
-        app: curl-invoker
+        app: node-publisher
       annotations:
         dapr.io/enabled: "true"
-        dapr.io/id: "curl-invoker"
+        dapr.io/id: "node-publisher"
         dapr.io/port: "3000"
     spec:
       containers:
-        - name: curl-invoker
-          image: daprapps.azurecr.io/curl_image:7.69.1
+        - name: node-publisher
+          image: daprapps.azurecr.io/node_publisher:latest
+          ports:
+            - containerPort: 3000
           imagePullPolicy: IfNotPresent
